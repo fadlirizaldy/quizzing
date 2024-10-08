@@ -18,6 +18,17 @@ const SignUp = () => {
     setIsLoading(true);
     const body = { id: nanoid(), ...data };
     try {
+      const responseSearch = await fetch(
+        `http://localhost:3000/users?username=${data?.username}`
+      );
+      const responseSearchData = await responseSearch.json();
+      if (responseSearchData.length > 0) {
+        toast.error("Username is already exist", {
+          autoClose: 1500,
+        });
+        return;
+      }
+
       const response = await fetch("http://localhost:3000/users", {
         method: "POST",
         body: JSON.stringify(body),
@@ -25,11 +36,10 @@ const SignUp = () => {
 
       if (response.status === 201) {
         toast.success("Success Register! Login to continue", {
-          autoClose: 1000,
+          autoClose: 1500,
         });
         navigate("/login");
       }
-      console.log("RESPONSEEE POST REG", response);
     } catch (error) {
       console.log("Error:", error);
     } finally {
