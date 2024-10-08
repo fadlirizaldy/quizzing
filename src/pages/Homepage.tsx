@@ -1,11 +1,26 @@
-import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
-import { IQuizType, QUIZ_TYPE } from "../utils";
+import { IQuizType } from "../utils";
+import { useEffect, useState } from "react";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
+  const [quizTypeList, setQuizTypeList] = useState<IQuizType[]>();
+
+  useEffect(() => {
+    const fetchQuizList = async () => {
+      const response = await fetch("http://localhost:3000/quiz_list");
+      const responseData = await response.json();
+      setQuizTypeList(responseData);
+    };
+
+    fetchQuizList();
+  }, []);
+
   return (
     <Layout>
-      <div className="pt-10 mx-4">
+      <div className="pt-10">
         <div className="flex flex-col gap-2 items-center">
           <h1 className="font-bold text-3xl">Welcome to Quizzing</h1>
           <p className="w-1/2 text-center text-gray-600">
@@ -18,10 +33,11 @@ const Homepage = () => {
         <section className="mt-10 mx-14">
           <h2 className="text-lg font-semibold">Pick a quiz</h2>
           <div className="grid grid-cols-4 gap-4 mt-2">
-            {QUIZ_TYPE.map((data: IQuizType) => (
+            {quizTypeList?.map((data: IQuizType) => (
               <div
                 key={data.id}
                 className="h-64 cursor-pointer border border-slate-200 pb-7 rounded-lg transition-all hover:-translate-y-1"
+                onClick={() => navigate(`/quiz/${data.id}`)}
               >
                 <img
                   src={data.icon}
@@ -39,8 +55,6 @@ const Homepage = () => {
           </div>
         </section>
       </div>
-
-      <Footer />
     </Layout>
   );
 };

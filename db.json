@@ -1,0 +1,100 @@
+{
+  "users": [
+    {
+      "id": "J-OoMI6T7v6Y1bxvl_laY",
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": "TFdJiYpcqk7mvK9Q-FKXj",
+      "username": "tes",
+      "password": "fadli"
+    },
+    {
+      "id": "ilKyMazEMcssYHG0grteH",
+      "username": "fadli",
+      "password": "123"
+    },
+    {
+      "id": "7QhFWwqV80OHtB_gl8gn4",
+      "username": "fadli",
+      "password": "fadli123"
+    },
+    {
+      "id": "S5tKlEc6DLBvUHNUk0XHL",
+      "username": "fadli",
+      "password": "1111"
+    },
+    {
+      "id": "QuxphA8Wrus9awPkhowVU",
+      "username": "fadli",
+      "password": "1111"
+    },
+    {
+      "id": "2o__KXPbB-ShSI18Y2o-3",
+      "username": "fadli",
+      "password": "123"
+    },
+    {
+      "id": "yzosdyZBZzdVVuvO6aRAx",
+      "username": "fadli",
+      "password": "123"
+    },
+    {
+      "id": "nrzZBZ0lvEU2JkJH4-_7V",
+      "username": "f",
+      "password": "f"
+    }
+  ],
+  "quiz_list": [
+    {
+      "id": "1",
+      "title": "General",
+      "typeId": 9,
+      "icon": "/general.png",
+      "description": "A mix of questions from all topics—perfect for those who love to test their knowledge on a little bit of everything!"
+    },
+    {
+      "id": "2",
+      "title": "Animals",
+      "typeId": 27,
+      "icon": "/animal.png",
+      "description": "Explore the wonders of the animal kingdom! Test your knowledge of wildlife, habitats, and fascinating creatures from around the world."
+    },
+    {
+      "id": "3",
+      "title": "Computer Science",
+      "typeId": 18,
+      "icon": "/computer.png",
+      "description": "Dive into the world of technology and coding! From algorithms to hardware, see how well you know the digital world."
+    },
+    {
+      "id": "4",
+      "title": "Mathematics",
+      "typeId": 19,
+      "icon": "/math.png",
+      "description": "Challenge your problem-solving skills with fun math puzzles, equations, and brain teasers for all levels!"
+    },
+    {
+      "id": "5",
+      "title": "Art",
+      "typeId": 25,
+      "icon": "/art.png",
+      "description": "Discover the beauty of art history, famous masterpieces, and creative techniques. A perfect quiz for art enthusiasts!"
+    },
+    {
+      "id": "6",
+      "title": "Sport",
+      "typeId": 21,
+      "icon": "/sport.png",
+      "description": "How much do you know about your favorite sports and athletes? Put your sports trivia to the test!"
+    }
+  ],
+  "quiz_test": [
+    {
+      "id": "zctORFqHRbcbf9x0SivfH",
+      "user_id": "J-OoMI6T7v6Y1bxvl_laY",
+      "start_time": "2024-10-08T09:28:00Z"
+    }
+  ]
+}
