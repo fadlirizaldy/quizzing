@@ -1,10 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
-import Layout from "../components/Layout";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import Layout from "../components/Layout";
 import { IQuizType } from "../utils";
+import { toast } from "react-toastify";
 
 const QuizPage = () => {
   let { quizId } = useParams();
+  let location = useLocation();
 
   const [dataPage, setDataPage] = useState<IQuizType | undefined>();
   const navigate = useNavigate();
@@ -18,6 +21,21 @@ const QuizPage = () => {
 
     fetchQuizDetail();
   }, []);
+
+  const handleStartTest = () => {
+    const token = Cookies.get("token");
+
+    if (!token) {
+      Cookies.set("lastUrl", location.pathname);
+      toast.info("Please login or register to take the test!", {
+        autoClose: 1500,
+      });
+      navigate("/login");
+      return;
+    }
+
+    navigate(`/quiz/${quizId}/test`);
+  };
 
   return (
     <Layout>
@@ -37,7 +55,7 @@ const QuizPage = () => {
       <div className="mt-4">
         <button
           className="py-2 px-5 border border-slate-200 rounded-lg text-white bg-green-500"
-          onClick={() => navigate(`/quiz/${quizId}/test`)}
+          onClick={handleStartTest}
         >
           Start Quiz
         </button>

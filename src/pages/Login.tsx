@@ -1,7 +1,8 @@
-import { nanoid } from "nanoid";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IUser, useAuthStore } from "../store";
 
 interface IDataAuth {
   id?: string;
@@ -12,12 +13,14 @@ interface IDataAuth {
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const setAuthed = useAuthStore((state) => state.setIsLoggedIn);
+  const setUser = useAuthStore((state) => state.setUser);
+
   const [data, setData] = useState<IDataAuth>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchPostLogin = async () => {
     setIsLoading(true);
-    console.log("DATA", data);
     try {
       const response = await fetch(
         `http://localhost:3000/users?username=${data?.username}&password=${data?.password}`
@@ -32,8 +35,11 @@ const LoginPage = () => {
       }
 
       if (responseData.length > 0) {
-        const lastUrl = localStorage.getItem("lastUrl");
-        localStorage.setItem("token", responseData[0].id!);
+        const lastUrl = Cookies.get("lastUrl");
+        Cookies.set("token", responseData[0].id!);
+        setAuthed(true);
+        setUser(responseData[0] as IUser);
+
         toast.success("Success Login!", {
           autoClose: 1500,
         });
@@ -53,6 +59,12 @@ const LoginPage = () => {
 
   return (
     <div className="h-screen flex items-center justify-center">
+      <h2
+        className="font-semibold italic cursor-pointer text-xl absolute top-5 left-10"
+        onClick={() => navigate("/")}
+      >
+        Quizzing
+      </h2>
       <div className="py-3 px-5 rounded-md border border-slate-200 w-1/3">
         <h1 className="text-xl text-center font-semibold">Quizzing Login</h1>
 

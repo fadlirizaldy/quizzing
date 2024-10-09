@@ -53,6 +53,13 @@ const SignUp = () => {
   };
   return (
     <div className="h-screen flex items-center justify-center">
+      <h2
+        className="font-semibold italic cursor-pointer text-xl absolute top-5 left-10"
+        onClick={() => navigate("/")}
+      >
+        Quizzing
+      </h2>
+
       <div className="py-3 px-5 rounded-md border border-slate-200 w-1/3">
         <h1 className="text-xl text-center font-semibold">Quizzing Signup</h1>
 
